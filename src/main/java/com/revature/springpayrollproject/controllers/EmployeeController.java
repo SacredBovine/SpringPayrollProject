@@ -15,8 +15,12 @@ import java.util.List;
 @CrossOrigin( value = "http://localhost:4200") // for inevitable Angular
 public class EmployeeController {
 
-    @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping("id/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable int employeeId){
