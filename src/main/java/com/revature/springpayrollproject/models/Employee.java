@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
+@Table
 public class Employee {
 
     @Id

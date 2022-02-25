@@ -7,13 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
-
-    /**
-     * @param id integer value of employee id number
-     * @return employee object matching PK to param
-     */
-    public Employee findEmployeeByEmployeeId(int id);
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     /**
      * @param id integer value of department id
