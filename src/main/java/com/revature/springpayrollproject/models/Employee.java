@@ -20,10 +20,10 @@ public class Employee {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Department department;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
 
