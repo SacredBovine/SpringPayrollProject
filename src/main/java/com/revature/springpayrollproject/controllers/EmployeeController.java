@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 @RestController("employeeController")
 @RequestMapping("employee")
@@ -41,6 +42,26 @@ public class EmployeeController {
     @DeleteMapping
     public ResponseEntity<Void> deleteEmployee(@RequestBody Employee employee){
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping("role.{roleId}")
+    public ResponseEntity<List<Employee>> findEmployeesByRole(@PathVariable int roleId){
+        List<Employee> employees = employeeService.findEmployeeByRole(roleId);
+        if (!employees.isEmpty()){
+            return new ResponseEntity<>(employees, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("department/{departmentId}")
+    public ResponseEntity<List<Employee>> findEmployeesByDepartment(@PathVariable int departmentId){
+        List<Employee> employees = employeeService.findEmployeeByDept(departmentId);
+        if (!employees.isEmpty()){
+            return new ResponseEntity<>(employees, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
 }
