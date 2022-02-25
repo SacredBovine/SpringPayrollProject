@@ -39,5 +39,8 @@ public class EmployeeController {
     }
 
     @DeleteMapping
-    public ResponseEntity<>
+    public ResponseEntity<Void> deleteEmployee(@RequestBody Employee employee){
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 }

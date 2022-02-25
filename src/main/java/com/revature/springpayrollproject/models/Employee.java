@@ -24,8 +24,17 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
     @ManyToOne
-    @JoinColumn(name = "rold_id")
+    @JoinColumn(name = "role_id")
     private Role role;
+
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "salary")
+    private double salary;
+
 
     public Employee(String firstName, String lastName, Department department, Role role) {
         this.firstName = firstName;
