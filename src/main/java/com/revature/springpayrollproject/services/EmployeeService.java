@@ -36,23 +36,18 @@ public class EmployeeService {
 
     public Employee findEmployeeById(int id){
 
-        return employeeRepository.getById(id);
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if(employee.isPresent())
+            return employee.get();
+        else return null;
     }
 
-    public List<Employee> findEmployeeByRole(int id) throws IllegalStateException{
-
-        Optional<List<Employee>> employees = Optional.ofNullable(employeeRepository.findEmployeesByRole_RoleId(id));
-        if (employees.isPresent()){
-            return employees.get();
-        } else throw new IllegalStateException("Employees not found");
+    public List<Employee> findEmployeeByRole(int id) {
+        return employeeRepository.findEmployeesByRole_RoleId(id);
     }
 
-    public List<Employee> findEmployeeByDept(int departmentId) throws IllegalStateException{
-
-       Optional<List<Employee>> employees = Optional.ofNullable(employeeRepository.findEmployeesByDepartment_DepartmentId(departmentId));
-       if (employees.isPresent()){
-           return employees.get();
-       } else throw new IllegalStateException("Employees not found");
+    public List<Employee> findEmployeeByDept(int departmentId){
+       return employeeRepository.findEmployeesByDepartment_DepartmentId(departmentId);
     }
 
     public List<Employee> findAllEmployees() {

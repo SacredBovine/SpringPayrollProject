@@ -27,10 +27,11 @@ public class EmployeeController {
     public ResponseEntity<List<Employee>> getAllEmployees(){
         return ResponseEntity.ok(employeeService.findAllEmployees());
     }
-    @GetMapping("id/{employeeId}")
+    @GetMapping("/id/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable int employeeId){
-
-        return new ResponseEntity<>(employeeService.findEmployeeById(employeeId), HttpStatus.FOUND);
+        Employee employee = employeeService.findEmployeeById(employeeId);
+        if (employee != null) return ResponseEntity.ok(employee);
+        else return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PutMapping
@@ -55,7 +56,7 @@ public class EmployeeController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("role.{roleId}")
+    @GetMapping("role/{roleId}")
     public ResponseEntity<List<Employee>> findEmployeesByRole(@PathVariable int roleId){
         List<Employee> employees = employeeService.findEmployeeByRole(roleId);
         if (!employees.isEmpty()){

@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Department implements Serializable {
+public class Department {
     @Id
     @Column(name = "department_id")
     private int departmentId;
