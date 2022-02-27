@@ -1,5 +1,6 @@
 package com.revature.springpayrollproject.controllers;
 
+import com.revature.springpayrollproject.models.Department;
 import com.revature.springpayrollproject.models.Employee;
 import com.revature.springpayrollproject.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @GetMapping("")
+    public ResponseEntity<List<Employee>> getAllEmployees(){
+        return ResponseEntity.ok(employeeService.findAllEmployees());
+    }
     @GetMapping("id/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable int employeeId){
 
@@ -40,11 +45,13 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
 
+        employee = employeeService.createEmployee(employee);
         return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deleteEmployee(@RequestBody Employee employee){
+        employeeService.deleteEmployee(employee);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
